@@ -167,6 +167,21 @@ const supportedChips = {
       "spiMisoDlenOffs": 0x28,
       "spiW0Offs": 0x58,
     },
+    "ESP32S3": {
+      "chipId": ESP32S3,
+      "chipName": "ESP32-S3",
+      "magicVal": [0x9],
+      "baseFuseAddr": 0x60007000,
+      "macFuseAddr": 0x60007044,
+      "stubFile": "esp32s3",
+      "spiRegBase": 0x60002000,
+      "spiUsrOffs": 0x18,
+      "spiUsr1Offs": 0x1c,
+      "spiUsr2Offs": 0x20,
+      "spiMosiDlenOffs": 0x24,
+      "spiMisoDlenOffs": 0x28,
+      "spiW0Offs": 0x58,
+    },
 }
 
 class EspLoader {
