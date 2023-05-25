@@ -3,5 +3,5 @@
 
 # esp8266 esp32 esp32s2 esp32s3 esp32c3
 
-# [Click me to Update your Esp!](https://mugiwara-v2.github.io/esp32-S2-S3-Bin-Updater/)
+# [Click me to Update your Esp!](https://ciss84.github.io/esp32-S2-S3-Bin-Updater/)
 
