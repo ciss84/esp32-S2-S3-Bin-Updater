@@ -142,8 +142,8 @@ const supportedChips = {
       "chipId": ESP32S2,
       "chipName": "ESP32-S2",
       "magicVal": [0x000007c6],
-      "baseFuseAddr": 0x3f41A000,
-      "macFuseAddr": 0x3f41A044,
+      "baseFuseAddr": 0x6001A000,
+      "macFuseAddr": 0x6001A000,
       "stubFile": "esp32s2",
       "spiRegBase": 0x3f402000,
       "spiUsrOffs": 0x18,
@@ -167,7 +167,7 @@ const supportedChips = {
       "spiMosiDlenOffs": 0x24,
       "spiMisoDlenOffs": 0x28,
       "spiW0Offs": 0x58,
-    },
+    },    
     "ESP32C3": {
       "chipId": ESP32C3,
       "chipName": "ESP32-C3",
@@ -274,7 +274,7 @@ class EspLoader {
       macAddr[3] = (mac1 >> 8) & 0xFF;
       macAddr[4] = mac1 & 0xFF;
       macAddr[5] = (mac0 >> 24) & 0xFF;
-    } else if (this._chipfamily == ESP32 || this._chipfamily == ESP32S2 || this._chipfamily == ESP32S3) {
+    } else if (this._chipfamily == ESP32 || this._chipfamily == ESP32S2) || this._chipfamily == ESP32S3){
       macAddr[0] = mac2 >> 8 & 0xFF;
       macAddr[1] = mac2 & 0xFF;
       macAddr[2] = mac1 >> 24 & 0xFF;
@@ -852,7 +852,7 @@ class EspLoader {
       this.checksum(data),
       timeout,
     );
-  };
+  };  
 
   /**
    * @name flashDeflFinish
@@ -877,7 +877,7 @@ class EspLoader {
     let buffer;
     let flashWriteSize = this.getFlashWriteSize();
     if (!this.IS_STUB) {
-        if ([ESP32, ESP32S2, ESP32S3, ESP32C3].includes(this._chipfamily)) {
+        if ([ESP32, ESP32S2, ESP32C3].includes(this._chipfamily)) {
           await this.checkCommand(ESP_SPI_ATTACH, new Array(8).fill(0));
         }
     }
@@ -1172,7 +1172,7 @@ class EspLoader {
     let chipType = await this.chipType();
     let chipInfo = this.getChipInfo(chipType);
 
-    let response = await fetch('board/webbitv2/stubs/' + chipInfo.stubFile + '.json');
+    let response = await fetch('stubs/' + chipInfo.stubFile + '.json');
     let stubcode = await response.json();
 
     // Base64 decode the text and data

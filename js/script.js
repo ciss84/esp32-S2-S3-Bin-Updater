@@ -380,7 +380,6 @@ async function clickProgram() {
     let contents = await readUploadedFileAsArrayBuffer(binfile);
     try {
       let offset = parseInt(offsets[file].value, 16);
-      debugger;
       await espTool.flashData(contents, offset, file);
       await sleep(100);
       logMsg("To run the new firmware, please reset your device.");
